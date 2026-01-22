@@ -19,6 +19,9 @@ MODEL_TYPES = {
     "upscale_models": [".safetensors", ".pt", ".pth"],
     "vae": [".safetensors", ".pt", ".bin"],
     "unet": [".safetensors", ".pt", ".bin"],
+    "mmaudio": [".safetensors", ".pt", ".bin"],
+    "diffusion_models": [".safetensors", ".pt", ".bin"],
+    "text_encoders": [".safetensors", ".pt", ".bin"]
 }
 
 
