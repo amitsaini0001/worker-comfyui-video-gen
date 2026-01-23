@@ -84,6 +84,19 @@ RUN chmod +x /usr/local/bin/comfy-node-install
 # Prevent pip from asking for confirmation during uninstall steps in custom nodes
 ENV PIP_NO_INPUT=1
 
+# Install Custom Nodes using the script
+RUN comfy-node-install \
+    rgthree-comfy@1.0.2512112053 \
+    comfyui-kjnodes@1.2.7 \
+    comfyui-videohelpersuite@1.7.9 \
+    comfyui_tinyterranodes@2.0.10 \
+    comfyui-logicutils@1.8.0 \
+    comfyui-mmaudio@1.0.3 \
+    comfyui-rvtools@2.0.4
+
+#install custom nodes
+RUN git clone https://github.com/amitsaini0001/ComfyUI-VFI /comfyui/custom_nodes/ComfyUI-VFI
+
 # Copy helper script to switch Manager network mode at container start
 COPY scripts/comfy-manager-set-mode.sh /usr/local/bin/comfy-manager-set-mode
 RUN chmod +x /usr/local/bin/comfy-manager-set-mode
@@ -103,18 +116,6 @@ WORKDIR /comfyui
 
 # Create necessary directories upfront
 RUN mkdir -p models/checkpoints models/vae models/unet models/clip models/text_encoders models/diffusion_models models/model_patches models/mmaudio models/diffusion_models models/text_encoders
-
-
-RUN comfy node install --exit-on-fail rgthree-comfy@1.0.2512112053 --mode remote
-RUN comfy node install --exit-on-fail comfyui-kjnodes@1.2.7 --mode remote
-RUN comfy node install --exit-on-fail comfyui-videohelpersuite@1.7.9 --mode remote
-RUN comfy node install --exit-on-fail comfyui_tinyterranodes@2.0.10 --mode remote
-RUN comfy node install --exit-on-fail comfyui-logicutils@1.8.0 --mode remote
-RUN comfy node install --exit-on-fail comfyui-mmaudio@1.0.3 --mode remote
-RUN comfy node install --exit-on-fail comfyui-rvtools@2.0.4 --mode remote
-
-#install custom nodes
-RUN git clone https://github.com/amitsaini0001/ComfyUI-VFI /comfyui/custom_nodes/ComfyUI-VFI
 
 # Download checkpoints/vae/unet/clip models to include in image based on model type
 RUN if [ "$MODEL_TYPE" = "sdxl" ]; then \
