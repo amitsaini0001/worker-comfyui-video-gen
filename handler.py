@@ -52,6 +52,13 @@ COMFY_HOST = "127.0.0.1:8188"
 REFRESH_WORKER = os.environ.get("REFRESH_WORKER", "false").lower() == "true"
 
 # ---------------------------------------------------------------------------
+# NOTE: HuggingFace cached models are set up at container start by
+# /setup_cached_models.py which creates symlinks from ComfyUI model
+# directories to the RunPod cache at /runpod-volume/huggingface-cache/hub/
+# See: https://docs.runpod.io/serverless/endpoints/model-caching
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
 # Helper: quick reachability probe of ComfyUI HTTP endpoint (port 8188)
 # ---------------------------------------------------------------------------
 

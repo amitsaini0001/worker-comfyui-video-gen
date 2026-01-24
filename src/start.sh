@@ -4,6 +4,14 @@
 TCMALLOC="$(ldconfig -p | grep -Po "libtcmalloc.so.\d" | head -n 1)"
 export LD_PRELOAD="${TCMALLOC}"
 
+# Force offline mode for HuggingFace (use only cached models, don't download)
+export HF_HUB_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
+
+# Setup cached models from HuggingFace (creates symlinks to ComfyUI model directories)
+echo "worker-comfyui: Setting up cached models..."
+python /setup_cached_models.py
+
 # Ensure ComfyUI-Manager runs in offline network mode inside the container
 comfy-manager-set-mode offline || echo "worker-comfyui - Could not set ComfyUI-Manager network_mode" >&2
 

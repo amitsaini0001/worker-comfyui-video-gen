@@ -74,8 +74,8 @@ WORKDIR /
 RUN uv pip install runpod requests websocket-client
 
 # Add application code and scripts
-ADD src/start.sh src/network_volume.py handler.py ./
-RUN chmod +x /start.sh
+ADD src/start.sh src/network_volume.py src/setup_cached_models.py handler.py ./
+RUN chmod +x /start.sh /setup_cached_models.py
 
 # Add script to install custom nodes
 COPY scripts/comfy-node-install.sh /usr/local/bin/comfy-node-install
