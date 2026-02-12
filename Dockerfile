@@ -10,7 +10,7 @@ ARG CUDA_VERSION_FOR_COMFY
 ARG ENABLE_PYTORCH_UPGRADE=false
 ARG PYTORCH_INDEX_URL
 # Type of generation: "image" or "video"
-ARG TYPE=video
+# ARG TYPE=video
 
 # Prevents prompts from packages asking for user input during installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -88,25 +88,25 @@ ENV PIP_NO_INPUT=1
 
 # Install Custom Nodes based on TYPE
 # Video type nodes
-RUN if [ "$CONTAINER_TYPE" = "video" ]; then \
-      comfy-node-install \
-        rgthree-comfy@1.0.2512112053 \
-        comfyui-kjnodes@1.2.7 \
-        comfyui-videohelpersuite@1.7.9 \
-        comfyui_tinyterranodes@2.0.10 \
-        comfyui-logicutils@1.8.0 \
-        comfyui-mmaudio@1.0.3 \
-        comfyui-rvtools@2.0.4 && \
-      git clone https://github.com/amitsaini0001/ComfyUI-VFI /comfyui/custom_nodes/ComfyUI-VFI; \
-    fi
+# RUN if [ "$CONTAINER_TYPE" = "video" ]; then \
+#       comfy-node-install \
+#         rgthree-comfy@1.0.2512112053 \
+#         comfyui-kjnodes@1.2.7 \
+#         comfyui-videohelpersuite@1.7.9 \
+#         comfyui_tinyterranodes@2.0.10 \
+#         comfyui-logicutils@1.8.0 \
+#         comfyui-mmaudio@1.0.3 \
+#         comfyui-rvtools@2.0.4 && \
+#       git clone https://github.com/amitsaini0001/ComfyUI-VFI /comfyui/custom_nodes/ComfyUI-VFI; \
+#     fi
 
 # Image type nodes
-RUN if [ "$CONTAINER_TYPE" = "image" ]; then \
-      comfy-node-install \
-        comfyui-easy-use@1.3.5 \
-        comfyui_tinyterranodes@2.0.10 \
-        rgthree-comfy@1.0.2512112053; \
-    fi
+# RUN if [ "$CONTAINER_TYPE" = "image" ]; then \
+#       comfy-node-install \
+#         comfyui-easy-use@1.3.5 \
+#         comfyui_tinyterranodes@2.0.10 \
+#         rgthree-comfy@1.0.2512112053; \
+#     fi
 
 # Copy helper script to switch Manager network mode at container start
 COPY scripts/comfy-manager-set-mode.sh /usr/local/bin/comfy-manager-set-mode
