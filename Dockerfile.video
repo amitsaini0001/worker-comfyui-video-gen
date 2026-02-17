@@ -91,11 +91,11 @@ RUN comfy-node-install \
     comfyui-videohelpersuite@1.7.9 \
     comfyui_tinyterranodes@2.0.10 \
     comfyui-logicutils@1.8.0 \
-    comfyui-mmaudio@1.0.3 \
     comfyui-rvtools@2.0.4
 
 #install custom nodes
 RUN git clone https://github.com/amitsaini0001/ComfyUI-VFI /comfyui/custom_nodes/ComfyUI-VFI
+RUN git clone https://github.com/amitsaini0001/ComfyUI-MMAudio /comfyui/custom_nodes/ComfyUI-MMAudio
 
 # Copy helper script to switch Manager network mode at container start
 COPY scripts/comfy-manager-set-mode.sh /usr/local/bin/comfy-manager-set-mode
