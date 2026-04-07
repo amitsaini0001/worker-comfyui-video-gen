@@ -13,3 +13,4 @@ runpod_worker_comfy:
   mmaudio: models/mmaudio/
   diffusion_models: models/diffusion_models/
   text_encoders: models/text_encoders/
+  sa2va: models/sa2va/

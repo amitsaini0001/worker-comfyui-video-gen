@@ -22,6 +22,7 @@ MODEL_TYPES = {
     "mmaudio": [".safetensors", ".pt", ".bin"],
     "diffusion_models": [".safetensors", ".pt", ".bin"],
     "text_encoders": [".safetensors", ".pt", ".bin"]
+    "sa2va": [".safetensors", ".py", ".json", ".txt"]
 }
 
 
