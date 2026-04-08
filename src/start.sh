@@ -56,6 +56,16 @@ echo "worker-comfyui: GPU available — $GPU_CHECK"
 echo "worker-comfyui: Setting up cached models..."
 python /setup_cached_models.py
 
+# Diagnostic: show what ended up in model directories
+echo "worker-comfyui: --- Model directory diagnostics ---"
+echo "worker-comfyui: /runpod-volume/huggingface-cache/hub contents:"
+ls -la /runpod-volume/huggingface-cache/hub/ 2>&1 || echo "  (directory does not exist)"
+echo "worker-comfyui: /runpod-volume/models contents:"
+find /runpod-volume/models -type f -o -type l 2>&1 | head -50 || echo "  (directory does not exist)"
+echo "worker-comfyui: /comfyui/models contents:"
+find /comfyui/models -type f -o -type l 2>&1 | head -50 || echo "  (directory does not exist)"
+echo "worker-comfyui: --- End diagnostics ---"
+
 
 # Ensure ComfyUI-Manager runs in offline network mode inside the container
 comfy-manager-set-mode offline || echo "worker-comfyui - Could not set ComfyUI-Manager network_mode" >&2
