@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 # Time to wait between API check attempts in milliseconds
 COMFY_API_AVAILABLE_INTERVAL_MS = int(
-    os.environ.get("COMFY_API_AVAILABLE_INTERVAL_MS", 5000)
+    os.environ.get("COMFY_API_AVAILABLE_INTERVAL_MS", 50)
 )
 # Maximum number of API check attempts (0 = no limit, poll while ComfyUI process is alive)
 COMFY_API_AVAILABLE_MAX_RETRIES = int(
