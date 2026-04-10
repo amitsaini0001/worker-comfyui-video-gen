@@ -116,7 +116,6 @@ WORKDIR /comfyui
 # Create necessary directories upfront
 RUN mkdir -p models/checkpoints models/vae models/unet models/clip models/text_encoders models/diffusion_models models/model_patches models/mmaudio models/diffusion_models models/text_encoders models/sa2va
 
-
 # Stage 3: Final image
 FROM base AS final
 
